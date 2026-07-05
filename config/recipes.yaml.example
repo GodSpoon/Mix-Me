@@ -1,0 +1,15 @@
+# Example custom recipes for Mix-Me.
+# Merge this block into your hermes.yaml under the `recipes:` key.
+
+recipes:
+  # Example: a focused electronic playlist
+  deep-techno:
+    title: "Deep Techno"
+    description: "Hypnotic, minimal techno for focused listening."
+    genre_seeds: [deep techno, minimal techno, dub techno]
+
+  # Example: a personal seasonal mix
+  summer-hits:
+    title: "Summer Hits"
+    description: "Upbeat tracks for sunny days."
+    genre_seeds: [pop, indie pop, dance pop, synthpop]

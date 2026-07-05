@@ -1,0 +1,58 @@
+# Example Hermes configuration for Mix-Me.
+# Copy this file to the Mix-Me repo root as `hermes.yaml` and fill in your own paths.
+
+spotify_db: /Users/sking/Music/music_tools/spotify-data.db
+download_cache: /Users/sking/Music/music_tools/hermes-cache/downloads.sqlite
+music_root: /Users/sking/Music/Music
+playlist_dir: /Users/sking/Music/Music/Playlists
+qobuz_dl: /Users/sking/.local/bin/qobuz-dl
+cache_dir: /Users/sking/Music/music_tools/hermes-cache
+
+sync_profiles:
+  ipod-classic-3g:
+    command: 'python3 ipod-sync.py /Users/sking/Music/Music /Volumes/DINOSPOON/Music --format mp3 --bitrate 192k'
+  innioasis-y1:
+    command: 'python3 ipod-sync.py /Users/sking/Music/Music /Volumes/Untitled/Music --format mp3 --bitrate 320k --art-size 500 --art-quality 90'
+
+radio_sources:
+  - name: kexp
+    query_template: 'site:kexp.org "song of the day"'
+  - name: kcrw
+    query_template: "site:kcrw.org \"today's top tune\""
+  - name: bbc6
+    query_template: 'BBC Radio 6 Music recent playlist'
+  - name: nacc
+    query_template: 'NACC college chart current'
+  - name: wfuv
+    query_template: 'WFUV new music playlist'
+  - name: kutx
+    query_template: 'KUTX song of the day'
+
+# Plexamp / Plex Media Server integration (optional).
+# plex:
+#   url: http://localhost:32400
+#   token: ${PLEX_TOKEN}
+#   music_library: Music
+
+recipes:
+  college-radio:
+    title: "College Radio Recommends"
+    description: "Fresh picks from college and indie radio stations."
+    genre_seeds: [indie, rock, electronic, alternative]
+    radio_source_names: [kexp, kcrw, bbc6, nacc, wfuv, kutx]
+  deathcore-hyperpop:
+    title: "Deathcore / Hyperpop Mix"
+    description: "Aggressive deathcore blended with hyperpop energy."
+    genre_seeds: [deathcore, hyperpop, metalcore, hardcore]
+  hardcore-techno:
+    title: "Hardcore / Techno Mix"
+    description: "Fast hardcore and driving techno."
+    genre_seeds: [hardcore, techno, industrial, gabber]
+  rock-edm:
+    title: "Rock / EDM Fusion"
+    description: "Rock and electronic dance music crossovers."
+    genre_seeds: [rock, edm, electronic, alternative]
+  discover-weekly:
+    title: "Discover Weekly"
+    description: "A weekly mix of new and lesser-heard tracks from your taste profile."
+    genre_seeds: [indie, alternative, electronic, rock]
