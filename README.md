@@ -54,7 +54,7 @@ source .venv/bin/activate
 mixme propose --genres deathcore,hyperpop --size 30 --output draft.json
 ```
 
-See `docs/architecture.md` for the full design.
+See `docs/usage.md` for the full command reference and `docs/architecture.md` for the design.
 
 ## License
 
