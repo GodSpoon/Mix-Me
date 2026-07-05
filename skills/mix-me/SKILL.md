@@ -30,11 +30,16 @@ Load this skill when the user asks for:
 1. Hermes Agent must be installed and running.
 2. The Mix-Me Hermes tooling must be installed:
    ```bash
-   cd /path/to/Mix-Me/hermes
-   pip install -e .
+   cd /path/to/Mix-Me
+   ./scripts/install.sh
    ```
-3. Qobuz credentials must be configured via `qobuz-dl login`.
-4. A `hermes.yaml` config file must exist in the Mix-Me root (copy from `config/hermes.yaml.example`).
+   This creates `.venv/`, installs `hermes` in editable mode, and exposes the `mixme` wrapper at `.venv/bin/mixme`.
+3. Add this skill directory to Hermes Agent's `skills.external_dirs`:
+   ```bash
+   hermes config set skills.external_dirs "/path/to/Mix-Me/skills"
+   ```
+4. Qobuz credentials must be configured via `qobuz-dl login`.
+5. A `hermes.yaml` config file must exist in the Mix-Me root (copy from `config/hermes.yaml.example`).
 
 ## Quick Reference
 

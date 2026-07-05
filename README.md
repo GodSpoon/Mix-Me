@@ -34,10 +34,25 @@ cd Mix-Me
 ./scripts/install.sh
 ```
 
-Then, either:
+`install.sh` creates a Python 3.13 virtual environment (falling back to `python3`), installs the Hermes tooling, exposes the `mixme` wrapper, and copies `config/hermes.yaml.example` to `hermes.yaml` if one doesn't exist.
 
-- **Hermes Agent**: `hermes skills install skills/mix-me` and ask *"make me a deathcore playlist"*.
-- **CLI directly**: `cd hermes && pip install -e . && cd .. && ./scripts/weekly_college_radio.sh`
+Then:
+
+1. Edit `hermes.yaml` with your own paths (music root, Spotify DB, Qobuz binary, sync profiles).
+2. Make sure `qobuz-dl login` has been run so downloads can authenticate.
+3. Add the skill to Hermes Agent:
+   ```bash
+   hermes config set skills.external_dirs "$PWD/skills"
+   ```
+   (Hermes Agent scans external skill directories; `hermes skills install <local-path>` is not supported by current Hermes Agent versions.)
+4. Ask for a playlist: *"make me a deathcore playlist"*.
+
+Or use the CLI directly:
+
+```bash
+source .venv/bin/activate
+mixme propose --genres deathcore,hyperpop --size 30 --output draft.json
+```
 
 See `docs/architecture.md` for the full design.
 

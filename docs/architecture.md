@@ -22,13 +22,15 @@ Hermes Agent loads the `mix-me` skill, which tells it how to translate that inte
 The skill contains:
 
 - `SKILL.md` — frontmatter, triggers, and procedures for Hermes Agent.
-- `scripts/mixme_client.py` — a thin wrapper around the Hermes CLI so the skill can call it without hard-coding paths.
+- `scripts/mixme_client.py` — a thin wrapper around the Hermes CLI so the skill can call it without hard-coding paths. `scripts/install.sh` exposes this as `.venv/bin/mixme`.
 
-The skill is installed into Hermes Agent's skill directory:
+The skill is exposed to Hermes Agent by adding the `skills/` directory to `skills.external_dirs` in Hermes Agent's `config.yaml`:
 
 ```bash
-hermes skills install /path/to/Mix-Me/skills/mix-me
+hermes config set skills.external_dirs /path/to/Mix-Me/skills
 ```
+
+(Older docs suggested `hermes skills install /path/to/Mix-Me/skills/mix-me`, but current Hermes Agent versions only support URL/git identifiers for `skills install`; local skills are loaded via `external_dirs`.)
 
 ### 3. Hermes tooling (`hermes/` submodule)
 
@@ -89,6 +91,6 @@ git pull
 # Update both upstream submodules
 git submodule update --remote --merge
 
-# Re-install Hermes tooling in your venv
-cd hermes && pip install -e .
+# Re-run the installer (recreates the venv if needed and re-installs the wrapper)
+./scripts/install.sh
 ```
