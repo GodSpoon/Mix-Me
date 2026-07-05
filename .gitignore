@@ -1,0 +1,8 @@
+# Mix-Me local environment and user-specific configuration
+/.venv/
+/.venv-agent/
+/.hermes-home/
+/hermes.yaml
+__pycache__/
+*.pyc
+.DS_Store
